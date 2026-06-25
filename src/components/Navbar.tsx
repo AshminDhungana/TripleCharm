@@ -21,6 +21,18 @@ export function Navbar() {
     document.documentElement.classList.toggle('dark');
   };
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setIsMobileMenuOpen(false);
+    const element = document.querySelector(href);
+    if (element) {
+      setTimeout(() => {
+        const offsetTop = element.getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+      }, 100);
+    }
+  };
+
   const handleCartClick = () => {
     const id = Date.now();
     setCartClicks((prev) => [...prev, id]);
@@ -69,6 +81,7 @@ export function Navbar() {
             <a 
               key={link.name} 
               href={link.href}
+              onClick={(e) => handleNavClick(e, link.href)}
               className={`text-sm font-medium tracking-wide uppercase hover:text-primary dark:hover:text-primary transition-colors ${
                 isScrolled ? 'text-text-main dark:text-gray-100' : 'text-text-main dark:text-gray-100'
               }`}
@@ -89,6 +102,7 @@ export function Navbar() {
             <a 
               key={link.name} 
               href={link.href}
+              onClick={(e) => handleNavClick(e, link.href)}
               className={`text-sm font-medium tracking-wide uppercase hover:text-primary dark:hover:text-primary transition-colors ${
                 isScrolled ? 'text-text-main dark:text-gray-100' : 'text-text-main dark:text-gray-100'
               }`}
@@ -164,8 +178,8 @@ export function Navbar() {
             <a 
               key={link.name} 
               href={link.href}
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="text-lg font-medium text-text-main dark:text-gray-100 hover:text-primary dark:hover:text-primary transition-colors"
+              onClick={(e) => handleNavClick(e, link.href)}
+              className="block py-2 text-lg font-medium text-text-main dark:text-gray-100 hover:text-primary dark:hover:text-primary transition-colors"
             >
               {link.name}
             </a>
