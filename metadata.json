@@ -1,8 +1,5 @@
 {
   "name": "Triple Charm Clothing",
   "description": "Premium fashion storefront for Triple Charm Clothing.",
-  "requestFramePermissions": [],
-  "majorCapabilities": [
-    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
-  ]
+  "requestFramePermissions": []
 }
